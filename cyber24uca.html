@@ -189,6 +189,10 @@
 </head>
 <body>
 
+    <audio id="bgMusic" loop>
+        <source src="https://raw.githubusercontent.com/DK-SENTINEL/cyber24_eid/main/cyber24_eid_song.mp3" type="audio/mpeg">
+    </audio>
+
     <svg width="0" height="0">
         <defs>
             <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -210,7 +214,7 @@
                     <path d="M22 6h-4.18A3.014 3.014 0 0 0 18 4.5c0-1.55-1.46-2.5-2.5-2.5C14.06 2 12 5.25 12 5.25S9.94 2 8.5 2C7.46 2 6 2.95 6 4.5A3.014 3.014 0 0 0 6.18 6H2v3h2v11h16V9h2V6zm-6.5-2c.4 0 .5.37.5.5s-.28 1.5-3 1.5c1.47-1.55 2.1-2 2.5-2zM8.5 4c.4 0 1.03.45 2.5 2C8.28 6 8 4.87 8 4.5c0-.13.1-.5.5-.5zM11 18H6v-9h5v9zm2 0v-9h5v9h-5z"/>
                 </svg>
             </div>
-            <h2 class="gold-text" style="font-size: 26px;">টিমের সদস্যদের জন্য একটি সারপ্রাইজ!</h2>
+            <h2 class="gold-text" style="font-size: 26px;">টিমের জন্য একটি সারপ্রাইজ!</h2>
             <p style="color: #aaa; font-size: 14px; margin-top: 10px;">একটি বিশেষ বার্তা অপেক্ষা করছে...</p>
             <button class="btn-glow" onclick="startSequence()">সারপ্রাইজটি খুলুন</button>
         </div>
@@ -239,8 +243,15 @@
     </div>
 
     <script>
-        // Multi-step Sequence Logic
+        // Multi-step Sequence & Audio Logic
         function startSequence() {
+            // Play Audio
+            let bgMusic = document.getElementById("bgMusic");
+            bgMusic.volume = 0.7; // ভলিউম ৭০% রাখা হয়েছে
+            bgMusic.play().catch(error => {
+                console.log("Audio playback was prevented by the browser.", error);
+            });
+
             // Hide Step 1
             document.getElementById('step1').classList.remove('active');
             
