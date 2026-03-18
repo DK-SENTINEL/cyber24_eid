@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Eid Greeting - Cyber 24</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: #050505;
+            background-image: radial-gradient(circle at 50% 50%, #1a1a24 0%, #000000 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        /* Mobile Frame Mockup */
+        .mobile-frame {
+            width: 380px;
+            height: 800px;
+            background: rgba(10, 10, 15, 0.8);
+            border-radius: 45px;
+            border: 2px solid #333;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Glassmorphism Panel */
+        .glass-panel {
+            width: 85%;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: absolute;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .glass-panel.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Premium Gold Text */
+        .gold-text {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        /* Step 1 Elements */
+        .gift-icon svg {
+            width: 100px;
+            height: 100px;
+            fill: url(#gold-gradient);
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+            animation: pulse 2s infinite;
+            margin-bottom: 20px;
+        }
+
+        .btn-glow {
+            margin-top: 30px;
+            padding: 12px 35px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+            background: linear-gradient(45deg, #BF953F, #FCF6BA, #B38728);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.8);
+            transform: translateY(-2px);
+        }
+
+        /* Step 2 & 3 Elements */
+        .moon-icon, .lantern-icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 223, 0, 0.6);
+        }
+
+        /* Final Step Typography */
+        .title-main {
+            font-size: 38px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .caption-text {
+            font-size: 16px;
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .team-highlight {
+            font-size: 14px;
+            color: #d4af37;
+            font-weight: 600;
+            padding: 10px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 10px;
+        }
+
+        /* Watermark */
+        .watermark {
+            position: absolute;
+            bottom: 20px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+            z-index: 50;
+        }
+
+        /* Fireworks Canvas */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            border-right: 2px solid #d4af37;
+            animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #d4af37; } }
+        
+        /* Ambient Background Stars */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <svg width="0" height="0">
+        <defs>
+            <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#BF953F;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#FCF6BA;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#B38728;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <div class="mobile-frame">
+        <div class="stars" id="stars"></div>
+
+        <canvas id="fireworksCanvas"></canvas>
+
+        <div id="step1" class="glass-panel active">
+            <div class="gift-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 6h-4.18A3.014 3.014 0 0 0 18 4.5c0-1.55-1.46-2.5-2.5-2.5C14.06 2 12 5.25 12 5.25S9.94 2 8.5 2C7.46 2 6 2.95 6 4.5A3.014 3.014 0 0 0 6.18 6H2v3h2v11h16V9h2V6zm-6.5-2c.4 0 .5.37.5.5s-.28 1.5-3 1.5c1.47-1.55 2.1-2 2.5-2zM8.5 4c.4 0 1.03.45 2.5 2C8.28 6 8 4.87 8 4.5c0-.13.1-.5.5-.5zM11 18H6v-9h5v9zm2 0v-9h5v9h-5z"/>
+                </svg>
+            </div>
+            <h2 class="gold-text" style="font-size: 26px;">টিমের সদস্যদের জন্য একটি সারপ্রাইজ!</h2>
+            <p style="color: #aaa; font-size: 14px; margin-top: 10px;">একটি বিশেষ বার্তা অপেক্ষা করছে...</p>
+            <button class="btn-glow" onclick="startSequence()">সারপ্রাইজটি খুলুন</button>
+        </div>
+
+        <div id="step2" class="glass-panel">
+            <div class="moon-icon">🌙</div>
+            <h2 class="gold-text typing-effect" style="width: 100%;">ঈদের চাঁদ উঠেছে আকাশে!</h2>
+        </div>
+
+        <div id="step3" class="glass-panel">
+            <div class="lantern-icon">🏮</div>
+            <h3 class="gold-text" style="font-size: 24px; margin-bottom: 15px;">রহমত ও বরকতের আলো</h3>
+            <p class="caption-text">এই আলো আপনাদের জীবন এবং আমাদের টিমের প্রতিটি পদক্ষেপে ছড়িয়ে পড়ুক...</p>
+        </div>
+
+        <div id="step4" class="glass-panel" style="width: 90%; padding: 30px 15px;">
+            <h1 class="gold-text title-main">ঈদ মোবারক</h1>
+            <p class="caption-text">দীর্ঘ একটি মাস সিয়াম সাধনার পর এলো খুশির ঈদ। আপনাদের এবং আপনাদের পরিবারের প্রতিটি মুহূর্ত হোক অনাবিল আনন্দময়।</p>
+            
+            <div class="team-highlight">
+                Cyber 24 - Under Cover Agency এর প্রতিটি দক্ষ ও পরিশ্রমী সদস্যকে জানাই আন্তরিক শুভেচ্ছা। আমাদের টিমের ঐক্য এবং ডেডিকেশন এভাবেই অটুট থাকুক। একসাথে আমরা আরও বহুদূর যাবো ইনশাআল্লাহ!
+            </div>
+        </div>
+
+        <div class="watermark">Crafted with ❤️ by Cyber 24 - Under Cover Agency</div>
+    </div>
+
+    <script>
+        // Multi-step Sequence Logic
+        function startSequence() {
+            // Hide Step 1
+            document.getElementById('step1').classList.remove('active');
+            
+            // Show Step 2 (Moon)
+            setTimeout(() => {
+                document.getElementById('step2').classList.add('active');
+            }, 500);
+
+            // Hide Step 2, Show Step 3 (Lantern)
+            setTimeout(() => {
+                document.getElementById('step2').classList.remove('active');
+                setTimeout(() => {
+                    document.getElementById('step3').classList.add('active');
+                }, 800);
+            }, 4000);
+
+            // Hide Step 3, Show Step 4 (Final + Fireworks)
+            setTimeout(() => {
+                document.getElementById('step3').classList.remove('active');
+                setTimeout(() => {
+                    document.getElementById('step4').classList.add('active');
+                    startFireworks();
+                }, 800);
+            }, 8000);
+        }
+
+        // --- Premium Fireworks Canvas Logic ---
+        const canvas = document.getElementById("fireworksCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        let particles = [];
+
+        function random(min, max) { return Math.random() * (max - min) + min; }
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                const angle = random(0, Math.PI * 2);
+                const velocity = random(1, 6);
+                this.vx = Math.cos(angle) * velocity;
+                this.vy = Math.sin(angle) * velocity;
+                this.alpha = 1;
+                this.decay = random(0.015, 0.03);
+            }
+            update() {
+                this.vx *= 0.95; // friction
+                this.vy *= 0.95;
+                this.vy += 0.05; // gravity
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= this.decay;
+            }
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function createFirework() {
+            const x = random(50, canvas.width - 50);
+            const y = random(50, canvas.height / 2);
+            // Gold, Silver, and slight Orange colors for premium look
+            const colors = ['#d4af37', '#ffd700', '#f5f5dc', '#ff8c00']; 
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            for (let i = 0; i < 60; i++) {
+                particles.push(new Particle(x, y, color));
+            }
+        }
+
+        let animationId;
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].alpha <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+            if (Math.random() < 0.05) createFirework(); // Randomly spawn fireworks
+            animationId = requestAnimationFrame(animateFireworks);
+        }
+
+        function startFireworks() {
+            createFirework();
+            animateFireworks();
+            // Stop fireworks after 10 seconds to save performance
+            setTimeout(() => {
+                cancelAnimationFrame(animationId);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }, 10000);
+        }
+
+        // Create ambient twinkling stars for background
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 50; i++) {
+            let star = document.createElement('div');
+            star.style.position = 'absolute';
+            star.style.left = random(0, 100) + '%';
+            star.style.top = random(0, 100) + '%';
+            star.style.width = random(1, 3) + 'px';
+            star.style.height = star.style.width;
+            star.style.backgroundColor = '#fff';
+            star.style.borderRadius = '50%';
+            star.style.opacity = random(0.1, 0.8);
+            star.style.animation = `pulse ${random(2, 5)}s infinite`;
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
